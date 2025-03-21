@@ -3,7 +3,6 @@ module.exports = {
         "browser": true
     },
     "plugins": [
-        "jsdoc",
     ],
     "parserOptions": {
         "ecmaVersion": 12
