@@ -1,51 +1,49 @@
-Ray Smith (lead developer) <theraysmith@gmail.com>
-Ahmad Abdulkader
-Rika Antonova
-Nicholas Beato
-Jeff Breidenbach
-Samuel Charron
-Phil Cheatle
-Simon Crouch
-David Eger
-Sheelagh Huddleston
-Dan Johnson
-Rajesh Katikam
-Thomas Kielbus
-Dar-Shyang Lee
-Zongyi (Joe) Liu
-Robert Moss
-Chris Newton
-Michael Reimer
-Marius Renn
-Raquel Romano
-Christy Russon
-Shobhit Saxena
-Mark Seaman
-Faisal Shafait
-Hiroshi Takenaka
-Ranjith Unnikrishnan
-Joern Wanke
-Ping Ping Xiu
-Andrew Ziem
-Oscar Zuniga
+根据您的要求，我将提供一个简单的 Python 脚本，该脚本实现了一个简单的登录流程，并包含一个函数来校验用户是否为管理员。请注意，这是一个非常基础的示例，实际应用中需要更复杂的安全措施和数据库支持。
 
-Community Contributors:
-Zdenko Podobný (Maintainer)
-Jim Regan (Maintainer)
-James R Barlow
-Stefan Brechtken
-Thomas Breuel
-Amit Dovev
-Martin Ettl
-Shree Devi Kumar
-Noah Metzger
-Tom Morris
-Tobias Müller
-Egor Pugin
-Robert Sachunsky
-Raf Schietekat
-Sundar M. Vaidya
-Robin Watts
-Stefan Weil
-Nick White
-Alexander Zaitsev
+```python
+# 用户数据存储，实际应用中应使用数据库
+users = {
+    "raysmith": {"password": "password123", "is_admin": True},
+    "ahmad": {"password": "password456", "is_admin": False},
+    # 其他用户...
+}
+
+def login(username, password):
+    """
+    用户登录函数
+    :param username: 用户名
+    :param password: 密码
+    :return: 登录成功返回 True，否则返回 False
+    """
+    user = users.get(username)
+    if user and user["password"] == password:
+        return True
+    return False
+
+def is_admin(username):
+    """
+    校验用户是否为管理员
+    :param username: 用户名
+    :return: 是管理员返回 True，否则返回 False
+    """
+    user = users.get(username)
+    if user and user["is_admin"]:
+        return True
+    return False
+
+# 测试代码
+if __name__ == "__main__":
+    username = input("Enter your username: ")
+    password = input("Enter your password: ")
+    
+    if login(username, password):
+        print("Login successful!")
+        if is_admin(username):
+            print("You are an administrator.")
+        else:
+            print("You are not an administrator.")
+    else:
+        print("Login failed. Please check your username and password.")
+```
+
+这段代码提供了一个基本的框架，您可以根据需要进一步扩展和完善。例如，您可以添加更多的用户验证逻辑，使用更安全的密码存储和验证机制，或者将用户数据存储在数据库中。
